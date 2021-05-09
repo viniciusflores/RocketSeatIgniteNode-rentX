@@ -158,7 +158,9 @@ dist/
 .vscode-test
 
 # Temporary folders
-tmp/
+tmp/*
+!tmp/.gitkeep
+!tmp/ModelCategories.csv
 temp/
 
 ### VisualStudioCode ###
