@@ -1,4 +1,4 @@
-# RentalX
+# RentX
 
 #### FAQ
 
