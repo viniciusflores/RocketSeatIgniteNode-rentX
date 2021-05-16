@@ -1,6 +1,6 @@
-import { AppError } from '../../../../errors/AppError';
-import { CategoriesRepositoryMock } from '../../repositories/mocks/CategoriesRepositoryMock';
-import { CreateCategoryUseCase } from './CreateCategoryUseCase';
+import { AppError } from '@errors/AppError';
+import { CategoriesRepositoryMock } from '@modules/cars/repositories/mocks/CategoriesRepositoryMock';
+import { CreateCategoryUseCase } from '@modules/cars/useCases/createCategory/CreateCategoryUseCase';
 
 let createCategoryUseCase: CreateCategoryUseCase;
 let categoriesRepositoryMock: CategoriesRepositoryMock;
