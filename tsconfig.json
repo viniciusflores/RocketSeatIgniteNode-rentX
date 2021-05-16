@@ -9,12 +9,6 @@
       "@config/*": [
         "config/*"
       ],
-      "@errors/*": [
-        "errors/*"
-      ],
-      "@middlewares/*": [
-        "middlewares/*"
-      ],
       "@modules/*": [
         "modules/*"
       ],

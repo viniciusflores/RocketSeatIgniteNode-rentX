@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import { ListCategoriesUseCase } from '@modules/cars/useCases/listCategories/ListCategoriesUseCase';
+import { ListCategoriesService } from '@modules/cars/useCases/listCategories/ListCategoriesService';
 
 class ListCategoriesController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const listCategoriesUseCase = container.resolve(ListCategoriesUseCase);
-    const all = await listCategoriesUseCase.execute();
+    const listCategoriesService = container.resolve(ListCategoriesService);
+    const all = await listCategoriesService.execute();
     return response.json(all);
   }
 }

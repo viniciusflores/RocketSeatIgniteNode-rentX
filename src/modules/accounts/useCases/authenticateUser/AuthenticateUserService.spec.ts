@@ -1,18 +1,18 @@
-import { AppError } from '@errors/AppError';
 import { ICreateUserDTO } from '@modules/accounts/dtos/ICreateUserDTO';
 import { UsersRepositoryMock } from '@modules/accounts/repositories/mocks/UsersRepositoryMock';
-import { AuthenticateUserUseCase } from '@modules/accounts/useCases/authenticateUser/AuthenticateUserUseCase';
-import { CreateUserUseCase } from '@modules/accounts/useCases/createUser/CreateUserUseCase';
+import { AuthenticateUserService } from '@modules/accounts/useCases/authenticateUser/AuthenticateUserService';
+import { CreateUserService } from '@modules/accounts/useCases/createUser/CreateUserService';
+import { AppError } from '@shared/errors/AppError';
 
-let authenticateUserUseCase: AuthenticateUserUseCase;
+let authenticateUserService: AuthenticateUserService;
 let usersRepositoryMock: UsersRepositoryMock;
-let createUserUseCase: CreateUserUseCase;
+let createUserUseCase: CreateUserService;
 
 describe('Authenticate User', () => {
   beforeEach(() => {
     usersRepositoryMock = new UsersRepositoryMock();
-    authenticateUserUseCase = new AuthenticateUserUseCase(usersRepositoryMock);
-    createUserUseCase = new CreateUserUseCase(usersRepositoryMock);
+    authenticateUserService = new AuthenticateUserService(usersRepositoryMock);
+    createUserUseCase = new CreateUserService(usersRepositoryMock);
   });
 
   it('should be able to authenticate an user', async () => {
@@ -25,7 +25,7 @@ describe('Authenticate User', () => {
 
     await createUserUseCase.execute(user);
 
-    const result = await authenticateUserUseCase.execute({
+    const result = await authenticateUserService.execute({
       email: user.email,
       password: user.password,
     });
@@ -35,7 +35,7 @@ describe('Authenticate User', () => {
 
   it('should not be able to authenticate an nonexistent user', () => {
     expect(async () => {
-      await authenticateUserUseCase.execute({
+      await authenticateUserService.execute({
         email: 'wrong-mail@example.com',
         password: 'wrong-password',
       });
@@ -53,7 +53,7 @@ describe('Authenticate User', () => {
 
       await createUserUseCase.execute(user);
 
-      await authenticateUserUseCase.execute({
+      await authenticateUserService.execute({
         email: user.email,
         password: 'wrong-password',
       });

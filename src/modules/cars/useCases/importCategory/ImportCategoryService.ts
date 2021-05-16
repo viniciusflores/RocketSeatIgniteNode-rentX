@@ -10,7 +10,7 @@ interface IImportCategory {
 }
 
 @injectable()
-class ImportCategoryUseCase {
+class ImportCategoryService {
   constructor(
     @inject('CategoriesRepository')
     private categoriesRepository: ICategoriesRepository,
@@ -56,4 +56,4 @@ class ImportCategoryUseCase {
   }
 }
 
-export { ImportCategoryUseCase };
+export { ImportCategoryService };

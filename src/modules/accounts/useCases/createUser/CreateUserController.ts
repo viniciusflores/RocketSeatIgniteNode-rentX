@@ -1,14 +1,14 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import { CreateUserUseCase } from '@modules/accounts/useCases/createUser/CreateUserUseCase';
+import { CreateUserService } from '@modules/accounts/useCases/createUser/CreateUserService';
 
 class CreateUserController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { name, email, password, driver_license } = request.body;
-    const createUserUseCase = container.resolve(CreateUserUseCase);
+    const createUserUseService = container.resolve(CreateUserService);
 
-    await createUserUseCase.execute({
+    await createUserUseService.execute({
       name,
       email,
       password,

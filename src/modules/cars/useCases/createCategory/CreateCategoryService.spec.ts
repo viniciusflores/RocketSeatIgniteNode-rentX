@@ -1,14 +1,14 @@
-import { AppError } from '@errors/AppError';
 import { CategoriesRepositoryMock } from '@modules/cars/repositories/mocks/CategoriesRepositoryMock';
-import { CreateCategoryUseCase } from '@modules/cars/useCases/createCategory/CreateCategoryUseCase';
+import { CreateCategoryService } from '@modules/cars/useCases/createCategory/CreateCategoryService';
+import { AppError } from '@shared/errors/AppError';
 
-let createCategoryUseCase: CreateCategoryUseCase;
+let createCategoryService: CreateCategoryService;
 let categoriesRepositoryMock: CategoriesRepositoryMock;
 
 describe('Create category', () => {
   beforeEach(() => {
     categoriesRepositoryMock = new CategoriesRepositoryMock();
-    createCategoryUseCase = new CreateCategoryUseCase(categoriesRepositoryMock);
+    createCategoryService = new CreateCategoryService(categoriesRepositoryMock);
   });
 
   it('Should be able to create a new category', async () => {
@@ -17,7 +17,7 @@ describe('Create category', () => {
       description: 'Category description test',
     };
 
-    await createCategoryUseCase.execute(category);
+    await createCategoryService.execute(category);
 
     const categoryCreated = await categoriesRepositoryMock.findByName(
       category.name,
@@ -33,9 +33,9 @@ describe('Create category', () => {
         description: 'Category description test',
       };
 
-      await createCategoryUseCase.execute(category);
+      await createCategoryService.execute(category);
 
-      await createCategoryUseCase.execute(category);
+      await createCategoryService.execute(category);
     }).rejects.toBeInstanceOf(AppError);
   });
 });
