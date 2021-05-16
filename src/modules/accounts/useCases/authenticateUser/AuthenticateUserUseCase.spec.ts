@@ -1,3 +1,4 @@
+import { AppError } from '@errors/AppError';
 import { ICreateUserDTO } from '@modules/accounts/dtos/ICreateUserDTO';
 import { UsersRepositoryMock } from '@modules/accounts/repositories/mocks/UsersRepositoryMock';
 import { AuthenticateUserUseCase } from '@modules/accounts/useCases/authenticateUser/AuthenticateUserUseCase';
