@@ -160,7 +160,10 @@ dist/
 # Temporary folders
 tmp/*
 !tmp/.gitkeep
+!tmp/avatar/
+!tmp/avatar/*
 !tmp/ModelCategories.csv
+
 temp/
 
 ### VisualStudioCode ###
