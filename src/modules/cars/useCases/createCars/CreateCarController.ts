@@ -1,4 +1,4 @@
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import { CreateCarService } from './CreateCarService';
