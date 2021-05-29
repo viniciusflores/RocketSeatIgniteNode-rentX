@@ -1,3 +1,4 @@
+import { User } from '@modules/accounts/infra/typeorm/entities/User';
 import { ICreateCarDTO } from '@modules/cars/dtos/ICreateCarDTO';
 import { Car } from '@modules/cars/infra/typeorm/entities/Car';
 
@@ -14,6 +15,8 @@ class CarsRepositoryMock implements ICarsRepository {
     fine_amount,
     brand,
     category_id,
+    specifications,
+    id,
   }: ICreateCarDTO): Promise<Car> {
     const car = new Car();
 
@@ -25,6 +28,8 @@ class CarsRepositoryMock implements ICarsRepository {
       fine_amount,
       brand,
       category_id,
+      specifications,
+      id,
     });
 
     this.cars.push(car);
@@ -54,6 +59,10 @@ class CarsRepositoryMock implements ICarsRepository {
     });
 
     return allAvailable;
+  }
+
+  async findById(id: string): Promise<Car> {
+    return this.cars.find((car) => car.id === id);
   }
 }
 
