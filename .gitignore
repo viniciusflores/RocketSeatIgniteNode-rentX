@@ -162,6 +162,8 @@ tmp/*
 !tmp/.gitkeep
 !tmp/avatar/
 !tmp/avatar/*
+!tmp/cars/
+!tmp/cars/*
 !tmp/ModelCategories.csv
 
 temp/

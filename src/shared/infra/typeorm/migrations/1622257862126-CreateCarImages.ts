@@ -9,7 +9,7 @@ export class CreateCarImages1622257862126 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'cars_image',
+        name: 'car_images',
         columns: [
           {
             name: 'id',
@@ -34,7 +34,7 @@ export class CreateCarImages1622257862126 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      'cars_image',
+      'car_images',
       new TableForeignKey({
         name: 'FKCarImage',
         referencedTableName: 'cars',
@@ -47,7 +47,7 @@ export class CreateCarImages1622257862126 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey('cars_image', 'FKCarImage');
-    await queryRunner.dropTable('cars_image');
+    await queryRunner.dropForeignKey('car_images', 'FKCarImage');
+    await queryRunner.dropTable('car_images');
   }
 }
