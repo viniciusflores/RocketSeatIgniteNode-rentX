@@ -15,6 +15,8 @@ class UploadCarImagesService {
   ) {}
 
   async execute({ car_id, images_name }: IRequest): Promise<void> {
+    // Exclude old images before save new registers
+
     images_name.map(async (image) => {
       await this.carImagesRepository.create(car_id, image);
     });
