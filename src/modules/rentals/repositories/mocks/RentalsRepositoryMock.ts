@@ -1,7 +1,6 @@
-import { ICreateRentalDTO } from '@modules/rentals/dtos/ICreateRentalDTO';
-import { Rental } from '@modules/rentals/infra/entities/Rental';
-
-import { IRentalsRepository } from '../IRentalsRepository';
+import { ICreateRentalsDTO } from '@modules/rentals/dtos/ICreateRentalDTO';
+import { Rental } from '@modules/rentals/infra/typeorm/entities/Rental';
+import { IRentalsRepository } from '@modules/rentals/repositories/IRentalsRepository';
 
 class RentalsRepositoryMock implements IRentalsRepository {
   rentals: Rental[] = [];
@@ -20,7 +19,7 @@ class RentalsRepositoryMock implements IRentalsRepository {
     user_id,
     car_id,
     expected_return_date,
-  }: ICreateRentalDTO): Promise<Rental> {
+  }: ICreateRentalsDTO): Promise<Rental> {
     const rental = new Rental();
     Object.assign(rental, {
       user_id,

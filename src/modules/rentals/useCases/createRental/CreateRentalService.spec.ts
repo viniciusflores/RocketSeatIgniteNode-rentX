@@ -1,11 +1,13 @@
 import dayjs from 'dayjs';
 
+import { RentalsRepositoryMock } from '@modules/rentals/repositories/mocks/RentalsRepositoryMock';
+import { DayjsDateProvider } from '@shared/container/providers/DateProvider/implementations/DayjsDateProvider';
 import { AppError } from '@shared/errors/AppError';
 
-import { RentalsRepositoryMock } from '../repositories/mocks/RentalsRepositoryMock';
 import { CreateRentalService } from './CreateRentalService';
 
 let createRentalService: CreateRentalService;
+let dayjsDataProvider: DayjsDateProvider;
 let rentalsRepositoryMock: RentalsRepositoryMock;
 
 describe('Create Rental', () => {
@@ -13,7 +15,11 @@ describe('Create Rental', () => {
 
   beforeEach(() => {
     rentalsRepositoryMock = new RentalsRepositoryMock();
-    createRentalService = new CreateRentalService(rentalsRepositoryMock);
+    dayjsDataProvider = new DayjsDateProvider();
+    createRentalService = new CreateRentalService(
+      rentalsRepositoryMock,
+      dayjsDataProvider,
+    );
   });
 
   it('should be able to create a new rental', async () => {
