@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 
+import { CarsRepositoryMock } from '@modules/cars/repositories/mocks/CarsRepositoryMock';
 import { RentalsRepositoryMock } from '@modules/rentals/repositories/mocks/RentalsRepositoryMock';
 import { DayjsDateProvider } from '@shared/container/providers/DateProvider/implementations/DayjsDateProvider';
 import { AppError } from '@shared/errors/AppError';
@@ -9,16 +10,19 @@ import { CreateRentalService } from './CreateRentalService';
 let createRentalService: CreateRentalService;
 let dayjsDataProvider: DayjsDateProvider;
 let rentalsRepositoryMock: RentalsRepositoryMock;
+let carsRepositoryMock: CarsRepositoryMock;
 
 describe('Create Rental', () => {
   const dayAdd24Hours = dayjs().add(1, 'day').toDate();
 
   beforeEach(() => {
     rentalsRepositoryMock = new RentalsRepositoryMock();
+    carsRepositoryMock = new CarsRepositoryMock();
     dayjsDataProvider = new DayjsDateProvider();
     createRentalService = new CreateRentalService(
       rentalsRepositoryMock,
       dayjsDataProvider,
+      carsRepositoryMock,
     );
   });
 
