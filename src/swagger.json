@@ -14,11 +14,9 @@
         "summary": "Create a category",
         "description": "Create a new category",
         "tags": ["Category"],
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
+        "security": [{
+          "bearerAuth": []
+        }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -78,14 +76,12 @@
         }
       }
     },
-    "/categories/import":{
+    "/categories/import": {
       "post": {
-        "tags":["Category"],
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
+        "tags": ["Category"],
+        "security": [{
+          "bearerAuth": []
+        }],
         "summary": "Upload a new Category",
         "description": "Upload a new Category",
         "requestBody": {
@@ -104,33 +100,31 @@
           }
         },
         "responses": {
-          "201":{
+          "201": {
             "description": "Created"
           }
         }
       }
     },
     "/specifications": {
-      "post":{
-        "tags":["Specifications"],
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "summary":"Create a specification",
+      "post": {
+        "tags": ["Specifications"],
+        "security": [{
+          "bearerAuth": []
+        }],
+        "summary": "Create a specification",
         "description": "Create a new specification",
-        "requestBody":{
+        "requestBody": {
           "content": {
-            "application/json":{
+            "application/json": {
               "schema": {
                 "$ref": "#/definitions/Specifications"
               }
             }
           }
         },
-        "responses":{
-          "201":{
+        "responses": {
+          "201": {
             "description": "Created"
           },
           "500": {
@@ -140,48 +134,50 @@
       }
     },
     "/sessions": {
-     "post": {
-       "tags": ["Session"],
-       "summary": "Authentication user",
-       "description": "Authentication user",
-       "requestBody": {
-         "content": {
-           "application/json": {
-             "schema": {
-               "type": "object",
-               "properties": {
-                 "email": {"type": "string"},
-                 "password": {"type": "string"}
-               }
-             }
-           }
-         }
-       },
-       "responses": {
-         "200": {
-           "description": "Success"
-         },
-         "400": {
-          "description": "User or password incorrect!"
+      "post": {
+        "tags": ["Session"],
+        "summary": "Authentication user",
+        "description": "Authentication user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "User or password incorrect!"
+          }
         }
-       }
-     }
+      }
     },
-    "/cars":{
+    "/cars": {
       "post": {
         "tags": ["Cars"],
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
+        "security": [{
+          "bearerAuth": []
+        }],
         "summary": "Create a new car",
         "description": "Create a new car",
         "requestBody": {
           "content": {
-            "application/json":{
+            "application/json": {
               "schema": {
-                "$ref":"#/definitions/Car"
+                "$ref": "#/definitions/Car"
               }
             }
           }
@@ -195,36 +191,78 @@
           }
         }
       }
+    },
+    "/cars/images/{id}": {
+      "post": {
+        "tags": ["Cars"],
+        "summary": "Upload images",
+        "description": "Upload images",
+        "security": [{
+          "bearerAuth": []
+        }],
+        "parameters": [{
+          "name": "id",
+          "in": "path",
+          "description": "Car id",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "images": {
+                    "type": "array",
+                    "items":{
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          }
+        }
+      }
     }
   },
-  "definitions":{
+  "definitions": {
     "Specifications": {
       "type": "object",
-      "properties":{
-        "name":{
+      "properties": {
+        "name": {
           "type": "string"
         },
-        "description":{
+        "description": {
           "type": "string"
         }
       }
     },
     "Car": {
       "type": "object",
-      "properties":{
+      "properties": {
         "name": {
           "type": "string"
         },
         "description": {
           "type": "string"
         },
-        "daily_rate":{
+        "daily_rate": {
           "type": "number"
         },
-        "license_plate":{
+        "license_plate": {
           "type": "string"
         },
-        "fine_amount":{
+        "fine_amount": {
           "type": "number"
         },
         "brand": {
