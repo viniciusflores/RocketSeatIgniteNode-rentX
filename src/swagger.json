@@ -81,6 +81,11 @@
     "/categories/import":{
       "post": {
         "tags":["Category"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Upload a new Category",
         "description": "Upload a new Category",
         "requestBody": {
@@ -108,6 +113,11 @@
     "/specifications": {
       "post":{
         "tags":["Specifications"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary":"Create a specification",
         "description": "Create a new specification",
         "requestBody":{
@@ -156,6 +166,35 @@
         }
        }
      }
+    },
+    "/cars":{
+      "post": {
+        "tags": ["Cars"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "Create a new car",
+        "description": "Create a new car",
+        "requestBody": {
+          "content": {
+            "application/json":{
+              "schema": {
+                "$ref":"#/definitions/Car"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Car already exists!"
+          }
+        }
+      }
     }
   },
   "definitions":{
@@ -166,6 +205,32 @@
           "type": "string"
         },
         "description":{
+          "type": "string"
+        }
+      }
+    },
+    "Car": {
+      "type": "object",
+      "properties":{
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "daily_rate":{
+          "type": "number"
+        },
+        "license_plate":{
+          "type": "string"
+        },
+        "fine_amount":{
+          "type": "number"
+        },
+        "brand": {
+          "type": "string"
+        },
+        "category_id": {
           "type": "string"
         }
       }
