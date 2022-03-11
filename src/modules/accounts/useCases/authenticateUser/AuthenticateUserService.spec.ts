@@ -1,17 +1,27 @@
 import { ICreateUserDTO } from '@modules/accounts/dtos/ICreateUserDTO';
 import { UsersRepositoryMock } from '@modules/accounts/repositories/mocks/UsersRepositoryMock';
+import { UsersTokenRepositoryMock } from '@modules/accounts/repositories/mocks/UsersTokenRepositoryMock';
 import { AuthenticateUserService } from '@modules/accounts/useCases/authenticateUser/AuthenticateUserService';
 import { CreateUserService } from '@modules/accounts/useCases/createUser/CreateUserService';
+import { DayjsDateProvider } from '@shared/container/providers/DateProvider/implementations/DayjsDateProvider';
 import { AppError } from '@shared/errors/AppError';
 
 let authenticateUserService: AuthenticateUserService;
 let usersRepositoryMock: UsersRepositoryMock;
 let createUserUseCase: CreateUserService;
+let usersTokensRepositoryMock: UsersTokenRepositoryMock;
+let dateProvider: DayjsDateProvider;
 
 describe('Authenticate User', () => {
   beforeEach(() => {
+    dateProvider = new DayjsDateProvider();
     usersRepositoryMock = new UsersRepositoryMock();
-    authenticateUserService = new AuthenticateUserService(usersRepositoryMock);
+    usersTokensRepositoryMock = new UsersTokenRepositoryMock();
+    authenticateUserService = new AuthenticateUserService(
+      usersRepositoryMock,
+      usersTokensRepositoryMock,
+      dateProvider,
+    );
     createUserUseCase = new CreateUserService(usersRepositoryMock);
   });
 

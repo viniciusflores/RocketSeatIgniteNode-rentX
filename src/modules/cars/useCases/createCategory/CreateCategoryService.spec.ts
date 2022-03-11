@@ -35,7 +35,7 @@ describe('Create category', () => {
     await createCategoryService.execute(category);
 
     await expect(createCategoryService.execute(category)).rejects.toEqual(
-      new AppError('Category already exists'),
+      new AppError('Category already exists!'),
     );
   });
 });
